@@ -65,11 +65,21 @@
             <div name="diff_level" id="diff_level" required class="input-field col s12">
                 <select>
                     <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Easy</option>
-                    <option value="2">Medium</option>
-                    <option value="3">Difficult</option>
+                    {% for diff_level in diff_levels %}
+                        <option value="{{diff_level.diff_levels}}">{{diff_level.diff_level}}</option>
+                    {% endfor %}
                 </select>
               <label for="diff_level">Difficulty Level</label>
+            </div>
+
+            <div name="cooking_method_name" id="cooking_method_name" required class="input-field col s12">
+                <select>
+                    <option value="" disabled selected>Choose your option</option>
+                    {% for cooking_method in cooking_methods %}
+                        <option value="{{cooking_method.cooking_method_name}}">{{cooking_method.cooking_method_name}}</option>
+                    {% endfor %}
+                </select>
+              <label for="cooking_method_name">Cooking Method</label>
             </div>
 
             <div class="row">
