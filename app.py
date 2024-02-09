@@ -29,6 +29,25 @@ def get_recipes():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        #To check whether this username already exists in databse
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        
+        if existing_user:
+            flash("Sorry, this username is taken. Please try again with a new username!")
+            return redirect(url_for("register"))
+
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
+
+        #To add the new user's username into session cookie using session imported from flask
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful!")
+
     return render_template("register.html")
 
 
