@@ -47,6 +47,7 @@ def register():
         #To add the new user's username into session cookie using session imported from flask
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
+        return redirect(url_for("profile", username=session["user"]))
     return render_template("register.html")
 
 
@@ -61,6 +62,8 @@ def login():
             if check_password_hash(already_a_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for(
+                    "profile", username=session["user"]))
             else:
                 #For if the user's input does not match the password in the database for the supplied username
                 flash("Incorrect Username and Password combination. Please try again!")
@@ -71,6 +74,13 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    #Collect session user's name from the database
+    username = mongo.db.users.find_one({"username": session["user"]})["username"]
+    return render_template("profile.html", username=username)
 
 
 
