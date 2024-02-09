@@ -1,29 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for recipe in recipes %}
-        {{ recipe.cooking_method_name }}<br>
-        {{ recipe.recipe_name }}<br>
-        {{ recipe.prep_time }}<br>
-        {{ recipe.cook_time }}<br>
-        {{ recipe.diff_level }}<br>
-        {{ recipe.ingredients }}<br>
-        {{ recipe.method }}<br>
-        {{ recipe.credit }}<br>
-    {% endfor %}
 
     <ul class="collapsible">
+        {% for recipe in recipes %}
         <li>
-            <div class="collapsible-header teal lighten-3 white-text"><i class="fas fa-caret-down"></i>First</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            <div class="collapsible-header teal lighten-3 white-text">
+                <i class="fas fa-caret-down"></i>
+                <strong>{{ recipe.recipe_name }}</strong>  - {{ recipe.cook_time }} - {{ recipe.cooking_method_name }}
+            </div>
+
+            <div class="collapsible-body">
+                <div>
+                    <strong>Original Author: </strong> {{ recipe.credit }}
+                </div>
+                <div>
+                    <strong>Prep Time: </strong> {{ recipe.prep_time }}
+                </div>
+                <div>
+                    <strong>Cooking Time: </strong> {{ recipe.cook_time }}
+                </div>
+                <div>
+                    <strong>Difficulty: </strong> {{ recipe.diff_level }}
+                </div>
+                <img class="center-align" src="{{ recipe.photo_path }}" alt="photo of {{ recipe.recipe_name }}">
+                <p>
+                    <strong>Ingredients: </strong> {{ recipe.ingredients }}
+                </p>
+                <p>
+                    <strong>Method: </strong> {{ recipe.method }}
+                </p>
+            </div>
         </li>
-        <li>
-            <div class="collapsible-header teal lighten-3 white-text"><i class="fas fa-caret-down"></i>First</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-            <div class="collapsible-header teal lighten-3 white-text"><i class="fas fa-caret-down"></i>First</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
+        {% endfor %}
       </ul>
 
 {% endblock %}
