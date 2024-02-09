@@ -47,8 +47,13 @@ def register():
         #To add the new user's username into session cookie using session imported from flask
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
-
     return render_template("register.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    return render_template("login.html")
+
 
 
 if __name__ == "__main__":
