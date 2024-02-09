@@ -6,7 +6,7 @@
         <li>
             <div class="collapsible-header teal lighten-3 white-text">
                 <i class="fas fa-caret-down"></i>
-                <strong>{{ recipe.recipe_name }}</strong>  - {{ recipe.cook_time }} - {{ recipe.cooking_method_name }}
+                <strong>{{ recipe.recipe_name }} </strong> <strong> - </strong> {{ recipe.completion_time }} Minutes - {{ recipe.cooking_method_name }}
             </div>
 
             <div class="collapsible-body">
@@ -14,10 +14,13 @@
                     <strong>Original Author: </strong> {{ recipe.credit }}
                 </div>
                 <div>
-                    <strong>Prep Time: </strong> {{ recipe.prep_time }}
+                    <strong>Preparation Time: </strong> {{ recipe.prep_time }} Minutes
                 </div>
                 <div>
-                    <strong>Cooking Time: </strong> {{ recipe.cook_time }}
+                    <strong>Cooking Time: </strong> {{ recipe.cook_time }} Minutes
+                </div>
+                <div>
+                    <strong>Completion Time: </strong> {{ recipe.completion_time }} Minutes
                 </div>
                 <div>
                     <strong>Difficulty: </strong> {{ recipe.diff_level }}
