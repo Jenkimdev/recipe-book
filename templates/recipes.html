@@ -7,8 +7,12 @@
         {% for recipe in recipes %}
         <li>
             <div class="collapsible-header teal lighten-3 white-text">
-                <i class="fas fa-caret-down"></i>
-                <strong>{{ recipe.recipe_name }} </strong> <strong> - </strong> {{ recipe.completion_time }} Minutes - {{ recipe.cooking_method_name }}
+                <div class="col s3">
+                    <i class="fa-solid fa-caret-down"></i>
+                    <a class="waves-effect waves-light btn-small">Edit</a>
+                    <a class="done waves-effect waves-light btn-small">Done</a>
+                </div>
+                <strong class="gap">{{ recipe.recipe_name }} </strong> <strong> - </strong> {{ recipe.completion_time }} Minutes - {{ recipe.cooking_method_name }}
             </div>
 
             <div class="collapsible-body">
