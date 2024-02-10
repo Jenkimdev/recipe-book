@@ -120,6 +120,14 @@ def add_recipe():
     return render_template("add_recipe.html", cooking_methods=cooking_methods, diff_levels=diff_levels)
 
 
+@app.route("/edit_recipe/<recipe_id>", methods=["GET","POST"])
+def edit_recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+    diff_levels = mongo.db.diff_levels.find().sort("diff_level", 1)
+    return render_template("edit_recipe.html", recipe=recipe, diff_levels=diff_levels)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
