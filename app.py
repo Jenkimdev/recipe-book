@@ -124,8 +124,10 @@ def add_recipe():
 def edit_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 
+
     diff_levels = mongo.db.diff_levels.find().sort("diff_level", 1)
-    return render_template("edit_recipe.html", recipe=recipe, diff_levels=diff_levels)
+    cooking_methods = mongo.db.cooking_methods.find().sort("cooking_method_name", 1)
+    return render_template("edit_recipe.html", recipe=recipe, cooking_methods=cooking_methods, diff_levels=diff_levels)
 
 
 if __name__ == "__main__":
