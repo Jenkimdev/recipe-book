@@ -4,76 +4,86 @@
     <h3 class="center-align">Add New Recipe</h3>
 
     <div class="row card-panel grey lighten-5">
-        <form action="" method="POST" class="col s12">
+        <!-- Add new recipe form -->
+        <form action="{{ url_for('add_recipe')}}" method="POST" class="col s12">
 
+            <!-- Recipe Name Field -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-cookie-bite prefix teal-text text-lighten-3"></i>
-                    <input name="recipe_name" minlength="8" maxlength="50" pattern="[0-9a-zA-Z]" required id="recipe_name" type="text" class="validate">
+                    <input name="recipe_name" minlength="8" maxlength="50" pattern="^[a-zA-Z0-9\s]{8,50}$" required id="recipe_name" type="text" class="validate">
                     <label for="recipe_name">Recipe Name</label>
                 </div>
             </div>
 
+            <!-- Image URL Field -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fa-solid fa-user prefix teal-text text-lighten-3"></i>
-                    <input name="author_name" minlength="8" maxlength="50" pattern="[0-9a-zA-Z]" required id="author_name" type="text" class="validate">
-                    <label for="author_name">Author Name</label>
+                    <i class="fa-solid fa-image prefix teal-text text-lighten-3"></i>
+                    <input name="photo_path" minlength="5" maxlength="500" required id="photo_path" type="text" class="validate">
+                    <label for="photo_path">Image URL</label>
                 </div>
             </div>
 
+            <!-- Recipe Prep Time Field -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-stopwatch prefix teal-text text-lighten-3"></i>
-                    <input name="prep_time" name="prep_time" minlength="1" maxlength="3" pattern="[0-9]" required id="prep_time" type="text" class="validate">
-                    <label for="prep_time">Cooking Time</label>
+                    <input name="prep_time" name="prep_time" minlength="1" maxlength="3" pattern="^[0-9]{1,3}$" required id="prep_time" type="text" class="validate">
+                    <label for="prep_time">Prep Time</label>
                 </div>
             </div>
 
+            <!-- Recipe Cooking Time Field -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-clock prefix teal-text text-lighten-3"></i>
-                    <input name="cook_time" name="cook_time" minlength="1" maxlength="3" pattern="[0-9]" required id="cook_time" type="text" class="validate">
+                    <input name="cook_time" name="cook_time" minlength="1" maxlength="3" pattern="^[0-9]{1,3}$" required id="cook_time" type="text" class="validate">
                     <label for="cook_time">Cooking Time</label>
                 </div>
             </div>
 
+            <!-- Recipe Completion Time Field -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-regular fa-clock prefix teal-text text-lighten-3"></i>
-                    <input name="completion_time" name="completion_time" minlength="1" maxlength="3" pattern="[0-9]" required id="completion_time" type="text" class="validate">
+                    <input name="completion_time" name="completion_time" minlength="1" maxlength="3" pattern="^[0-9]{1,3}$" required id="completion_time" type="text" class="validate">
                     <label for="completion_time">Completion Time</label>
                 </div>
             </div>
 
+            <!-- Recipe Ingredients Field -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-list prefix teal-text text-lighten-3"></i>
-                    <textarea id="ingredients" required name="ingredients" class="materialize-textarea"></textarea>
+                    <textarea id="ingredients" required name="ingredients" pattern="^[a-zA-Z0-9\s]{8,1000}" class="materialize-textarea"></textarea>
                     <label for="ingredients">Ingredients</label>
                 </div>
             </div>
 
+            <!-- Recipe Method Field -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-book prefix teal-text text-lighten-3"></i>
-                    <textarea id="method" name="method" required class="materialize-textarea"></textarea>
+                    <textarea id="method" name="method" pattern="^[a-zA-Z0-9/s]{8,1000}" required class="materialize-textarea"></textarea>
                     <label for="method">Method</label>
                 </div>
             </div>
 
-            <div name="diff_level" id="diff_level" required class="input-field col s12">
-                <select>
+            <!-- Recipe Difficulty Level Selector -->
+            <div class="input-field col s12">
+                <select name="diff_level" id="diff_level" required>
                     <option value="" disabled selected>Choose your option</option>
                     {% for diff_level in diff_levels %}
-                        <option value="{{diff_level.diff_levels}}">{{diff_level.diff_level}}</option>
+                        <option value="{{diff_level.diff_level}}">{{diff_level.diff_level}}</option>
                     {% endfor %}
                 </select>
               <label for="diff_level">Difficulty Level</label>
             </div>
 
-            <div name="cooking_method_name" id="cooking_method_name" required class="input-field col s12">
-                <select>
+            <!-- Recipe Cooking Method Selector -->
+            <div class="input-field col s12">
+                <select name="cooking_method_name" id="cooking_method_name" required>
                     <option value="" disabled selected>Choose your option</option>
                     {% for cooking_method in cooking_methods %}
                         <option value="{{cooking_method.cooking_method_name}}">{{cooking_method.cooking_method_name}}</option>
@@ -82,6 +92,7 @@
               <label for="cooking_method_name">Cooking Method</label>
             </div>
 
+            <!-- Add Recipe Button -->
             <div class="row">
                 <button class="col s12 btn-large teal text-shadow" type="submit">
                   Add Recipe <i class="fa-solid fa-plus"></i>

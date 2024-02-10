@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h3 class="center-align">All Recipes</h3>
+
     <ul class="collapsible">
         {% for recipe in recipes %}
         <li>
@@ -11,7 +13,7 @@
 
             <div class="collapsible-body">
                 <div>
-                    <strong>Original Author: </strong> {{ recipe.credit }}
+                    <strong> Author: </strong> {{ recipe.recipe_author }}
                 </div>
                 <div>
                     <strong>Preparation Time: </strong> {{ recipe.prep_time }} Minutes
@@ -25,7 +27,7 @@
                 <div>
                     <strong>Difficulty: </strong> {{ recipe.diff_level }}
                 </div>
-                <img class="center-align" src="{{ recipe.photo_path }}" alt="photo of {{ recipe.recipe_name }}">
+                <img class="center-align" width="100%" src="{{ recipe.photo_path }}" alt="photo of {{ recipe.recipe_name }}">
                 <p>
                     <strong>Ingredients: </strong> {{ recipe.ingredients }}
                 </p>
