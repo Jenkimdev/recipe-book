@@ -80,10 +80,10 @@ def login():
 def profile(username):
     #Collect session user's name from the database
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
-
+    my_recipes = mongo.db.recipes.find({"author_name" : session["user"]})
 
     if session["user"]:
-        return render_template("profile.html", username=username)
+            return render_template("profile.html", username=username, my_recipes=my_recipes)
 
     return redirect(url_for("login"))
 

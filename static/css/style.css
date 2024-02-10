@@ -5,3 +5,23 @@
 .collapsible-header .gap{
     margin-left: 2%;
 }
+
+h3 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: darkslategray;
+}
+
+.brand-logo {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: darkslategray;
+}
+
+.brand-logo i {
+    padding-left: 12px;
+    padding-right: 6px;
+}
+
+.nav-wrapper ul li a {
+    color: darkslategray;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
